@@ -1,0 +1,207 @@
+:root {
+    --bg-color: #f4f4f4;
+    --container-bg: blanchedalmond;
+    --result-bg: #222;
+    --result-text: white;
+    --button-bg: white;
+    --button-hover: lightgray;
+    --equal-bg: orange;
+    --equal-hover: rgb(255, 94, 0);
+    --blue-bg: #a7d8ff;
+    --op-bg: #f4a261;
+}
+.dark-mode {
+    --bg-color: #0d1117; /* Deep dark blue for background */
+    --container-bg: #161b22; /* Dark charcoal for calculator body */
+    --result-bg: #010409; /* Almost black for result display */
+    --result-text: #0ff; /* Neon cyan for digital effect */
+    --button-bg: #21262d; /* Darker gray for button background */
+    --button-hover: #30363d; /* Slightly lighter for hover effect */
+    --equal-bg: #ff5722; /* Vibrant cyber-orange for equal button */
+    --equal-hover: #e64a19; /* Darker shade for press effect */
+    --blue-bg: #007acc; /* Intense electric blue */
+    --op-bg: #8a2be2; /* Deep neon purple for operators */
+}
+
+#theme-switch {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-switch svg {
+    fill: darkslategray;
+}
+
+#theme-switch svg:last-child{
+    display: none;
+}
+
+.dark-mode #theme-switch svg {
+    fill: white;
+}
+
+.dark-mode #theme-switch svg:first-child{
+    display: none;
+}
+
+.dark-mode #theme-switch svg:last-child{
+    display: block;
+}
+
+.dark-mode #theme-switch {
+    background-color: darkslategray;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+}
+
+.calculator-container {
+    background-color: var(--container-bg);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    grid-template-areas: 
+        "result result result result"
+        "plus minus times divide"
+        "nine eight seven equal"
+        "six five four equal"
+        "three two one equal"
+        "zero comma clear equal";
+    position: relative;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.dark-mode .calculator-container::after, .dark-mode .calculator-container::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle),#ff4545,#00ff99,#006aff,#ff0095,#ff4545);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+    animation: 3s spin linear infinite;
+}
+
+.dark-mode .calculator-container::before{
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+@keyframes spin {
+    from{
+        --angle:0deg;
+    }
+    to{
+        --angle:360deg;
+    }
+}
+
+#result {
+    grid-area: result;
+    background: var(--result-bg);
+    color: var(--result-text);
+    font-size: 2rem;
+    text-align: right;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    background: var(--button-bg);
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: var(--button-hover);
+}
+
+#plus { grid-area: plus; }
+#minus { grid-area: minus; }
+#times { grid-area: times; }
+#divide { grid-area: divide; }
+#nine { grid-area: nine; }
+#eight { grid-area: eight; }
+#seven { grid-area: seven; }
+#six { grid-area: six; }
+#five { grid-area: five; }
+#four { grid-area: four; }
+#three { grid-area: three; }
+#two { grid-area: two; }
+#one { grid-area: one; }
+#zero { grid-area: zero; }
+#comma { grid-area: comma; }
+#clear { grid-area: clear; }
+
+#equal { 
+    grid-area: equal; 
+    background: var(--equal-bg); 
+    color: var(--result-text); 
+}
+
+#equal:hover{
+    background-color: var(--equal-hover);
+}
+
+.blue {
+    background-color: var(--blue-bg);
+}
+
+.op {
+    background-color: var(--op-bg);
+}
+
+.dark-mode .calculator-container #result{
+    color: white;
+}
+
+.dark-mode .calculator-container #equal{
+    color: black;
+}
+
+.dark-mode button:hover{
+    color: white;
+}
+
+.dark-mode #equal:hover{
+    color: white;
+}
