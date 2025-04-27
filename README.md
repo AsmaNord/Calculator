@@ -18,3 +18,5 @@ A sleek, responsive calculator web application featuring a dynamic theme switche
 - CSS3 (with modern features like CSS Grid and CSS Custom Properties)
 - JavaScript
 - SVG icons for theme switching
+
+## Demo : https://asmanord.github.io/Calculator/
